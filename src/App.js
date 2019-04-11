@@ -6,94 +6,148 @@ import axios, * as others from 'axios';
 
 
 class MyForm extends React.Component {
-  constructor() {
-    super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    var body = {
-      Name: 'Fred',
-      Email: 'Flintstone@gmail.com'
+  constructor(props) {
+    super(props);
+    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
+      country: ''
     }
-    axios({
-        method: 'get',
-        url: 'http(s)://5cac3f46c85e05001452f11e.mockapi.io/api/accounts/:endpoint',
-        data: body
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
 
+    this.onChange = (e) => {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+    }
+
+    this.onSubmit = (e) => {
+      e.preventDefault();
+      // get our form data out of state
+      const {
+        name,
+        email,
+        phone,
+        address,
+        city,
+        country
+      } = this.state;
+    }
   }
+
+  componentDidMount() {
+    axios.get('/api/accounts/:endpoint')
+      .then(json => console.log(json))
+  }
+
+
 
 
   render() {
+    const {
+      name,
+      email,
+      phone,
+      address,
+      city,
+      country
+    } = this.state;
     return ( <
-      div >
-      <
       form onSubmit = {
         this.handleSubmit
       } >
-
       <
-      label htmlFor = "name" > Enter username < /label> <
-      input id = "name"
+      input type = "text"
       name = "name"
-      type = "text" / >
-      <
+      value = {
+        name
+      }
+      placeholder = {
+        'Enter your name'
+      }
+      onChange = {
+        this.onChange
+      }
+      /> <
       br / >
-
       <
-      label htmlFor = "email" > Enter your email < /label> <
-      input id = "email"
+      input type = "text"
+      label = "Email"
       name = "email"
-      type = "email" / >
-      <
+      value = {
+        email
+      }
+      placeholder = {
+        'Enter your Email'
+      }
+      onChange = {
+        this.onChange
+      }
+      /> <
       br / >
-
       <
-      label htmlFor = "address" > Enter your address < /label> <
-      input id = "address"
-      name = "address"
-      type = "text" / >
-      <
-      br / >
-      <
-      label htmlFor = "phone" > Enter phone number < /label> <
-      input id = "phone"
+      input type = "text"
       name = "phone"
-      type = "text" / >
-      <
+      value = {
+        phone
+      }
+      placeholder = {
+        'Enter your phone number'
+      }
+      onChange = {
+        this.onChange
+      }
+      /> <
       br / >
       <
-      label htmlFor = "city" > Enter your city < /label> <
-      input id = "city"
+      input type = "text"
+      name = "address"
+      value = {
+        address
+      }
+      placeholder = {
+        'Enter your Address'
+      }
+      onChange = {
+        this.onChange
+      }
+      /> <
+      br / >
+      <
+      input type = "text"
       name = "city"
-      type = "text" / >
-      <
+      value = {
+        city
+      }
+      placeholder = {
+        'Enter your city'
+      }
+      onChange = {
+        this.onChange
+      }
+      /> <
       br / >
       <
-      label htmlFor = "country" > Enter your country < /label> <
-      input id = "country"
+      input type = "text"
       name = "country"
-      type = "text" / >
-      <
+      value = {
+        country
+      }
+      placeholder = {
+        'Enter your country'
+      }
+      onChange = {
+        this.onChange
+      }
+      /> <
       br / >
       <
-      button > Submit < /button> </form >
-
-      <
-      /div>
-
+      button type = "submit" > Submit < /button> < /
+      form >
     );
-
-
   }
 }
 export default MyForm;
