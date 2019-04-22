@@ -1,8 +1,5 @@
 import React from 'react';
 import Axios from "axios";
-import {
-  Redirect
-} from 'react-router-dom'
 
 class MyForm extends React.Component {
   constructor(props) {
@@ -82,15 +79,6 @@ class MyForm extends React.Component {
     }).catch(err => {
       console.log("data not found");
     });
-
-    redirectTo = () => {
-      const {
-        history: {
-          push
-        }
-      } = this.props;
-      push("/api/accounts/data");
-    };
   }
 
 
@@ -103,23 +91,12 @@ class MyForm extends React.Component {
       city,
       country
     } = this.state;
-    return ( <
-      form onSubmit = {
+
+    return (
+      <form onSubmit = {
         this.handleSubmit
       } >
-      <
-      div className = "col-12" >
-      <
-      a href = "#"
-      className = "colorchange text-decoration-none fnt-20 step-back"
-      onClick = {
-        this.redirectTo
-      } >
-      <
-      i className = "fa fa-angle-left mr-2" / >
-      Back <
-      /a> <
-      input type = "text"
+      <input type = "text"
       name = "name"
       value = {
         name
@@ -130,10 +107,10 @@ class MyForm extends React.Component {
       onChange = {
         this.onChangeName
       }
-      /> <
-      br / >
-      <
-      input type = "text"
+      />
+      <br/>
+
+      <input type = "text"
       label = "Email"
       name = "email"
       value = {
@@ -145,10 +122,10 @@ class MyForm extends React.Component {
       onChange = {
         this.onChangeEmail
       }
-      /> <
-      br / >
-      <
-      input type = "text"
+      />
+      <br/>
+
+      <input type = "text"
       name = "phone"
       value = {
         phone
@@ -159,10 +136,10 @@ class MyForm extends React.Component {
       onChange = {
         this.onChangePhone
       }
-      /> <
-      br / >
-      <
-      input type = "text"
+      />
+      <br/>
+
+      <input type = "text"
       name = "address"
       value = {
         address
@@ -173,10 +150,10 @@ class MyForm extends React.Component {
       onChange = {
         this.onChangeAddress
       }
-      /> <
-      br / >
-      <
-      input type = "text"
+      />
+      <br/>
+
+      <input type = "text"
       name = "city"
       value = {
         city
@@ -187,10 +164,10 @@ class MyForm extends React.Component {
       onChange = {
         this.onChangeCity
       }
-      /> <
-      br / >
-      <
-      input type = "text"
+      />
+      <br/>
+
+      <input type = "text"
       name = "country"
       value = {
         country
@@ -201,20 +178,15 @@ class MyForm extends React.Component {
       onChange = {
         this.onChangeCountry
       }
-      /> <
-      br / >
+      />
+      <br/>
 
-      <
-      button onClick = {
+      <button onClick = {
         this.onSubmit
       } >
-      Submit <
-      /button>
-      onClick = {
-        this.redirectToMyTeam
-      } <
-      /
-      form >
+      Submit
+       </button>
+    </form >
     );
   }
 }
