@@ -7,6 +7,7 @@ class MyForm extends React.Component {
     this.state = {
       name: '',
       email: '',
+      password: '',
       phone: '',
       address: '',
       city: '',
@@ -24,6 +25,12 @@ class MyForm extends React.Component {
   onChangeEmail = (e: React.ChangeEvent < HTMLInputElement > ) => {
     this.setState({
       email: e.target.value
+    });
+  };
+
+  onChangePassword = (e: React.ChangeEvent < HTMLInputElement > ) => {
+    this.setState({
+      password: e.target.value
     });
   };
 
@@ -56,11 +63,13 @@ class MyForm extends React.Component {
     const {
       name,
       email,
+      password,
       phone,
       address,
       city,
       country
     } = this.state;
+
 
 
     Axios({
@@ -70,6 +79,7 @@ class MyForm extends React.Component {
       data: {
         name: name,
         email: email,
+        password: password,
         phone: phone,
         address: address,
         city: city,
@@ -90,14 +100,6 @@ class MyForm extends React.Component {
 
 
   render() {
-    const {
-      name,
-      email,
-      phone,
-      address,
-      city,
-      country
-    } = this.state;
 
     return (
       <form onSubmit = {
@@ -106,7 +108,7 @@ class MyForm extends React.Component {
       <input type = "text"
       name = "name"
       value = {
-        name
+        this.state.name
       }
       placeholder = {
         'Enter your name'
@@ -121,7 +123,7 @@ class MyForm extends React.Component {
       label = "Email"
       name = "email"
       value = {
-        email
+        this.state.email
       }
       placeholder = {
         'Enter your Email'
@@ -132,10 +134,20 @@ class MyForm extends React.Component {
       />
       <br/>
 
+      <input type="password"
+      name="sign-password"
+      value={this.state.password}
+      className="form-control px-3"
+      placeholder="Enter your password"
+      data-qa-create-password
+      onChange={this.onChangePassword}
+        />
+      <br/>
+
       <input type = "text"
       name = "phone"
       value = {
-        phone
+        this.state.phone
       }
       placeholder = {
         'Enter your phone number'
@@ -149,7 +161,7 @@ class MyForm extends React.Component {
       <input type = "text"
       name = "address"
       value = {
-        address
+        this.state.address
       }
       placeholder = {
         'Enter your Address'
@@ -163,7 +175,7 @@ class MyForm extends React.Component {
       <input type = "text"
       name = "city"
       value = {
-        city
+        this.state.city
       }
       placeholder = {
         'Enter your city'
@@ -177,7 +189,7 @@ class MyForm extends React.Component {
       <input type = "text"
       name = "country"
       value = {
-        country
+        this.state.country
       }
       placeholder = {
         'Enter your country'
