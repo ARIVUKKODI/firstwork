@@ -66,6 +66,7 @@ class MyForm extends React.Component {
     Axios({
       method: 'post',
       url: 'http://5cac3f46c85e05001452f11e.mockapi.io/api/accounts/data',
+      responseType: 'json',
       data: {
         name: name,
         email: email,
@@ -80,6 +81,12 @@ class MyForm extends React.Component {
       console.log("data not found");
     });
   }
+
+    componentDidMount(){
+  Axios.get('http://5cac3f46c85e05001452f11e.mockapi.io/api/accounts/data')
+  .then(res => console.log(res.data));
+}
+
 
 
   render() {
